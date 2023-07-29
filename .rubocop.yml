@@ -1,0 +1,18 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/**/**'
+    - 'bin/**'
+    - 'Gemfile.lock'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 2
