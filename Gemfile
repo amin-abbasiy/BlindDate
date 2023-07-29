@@ -48,6 +48,9 @@ gem 'bootsnap', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 
+# create json in convention-deriven manner
+gem 'active_model_serializers', '~> 0.10.13'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -60,6 +63,8 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.2'
+  gem 'pry', '~> 0.14.2'
+  gem 'rspec-json_expectations', '~> 2.2'
   gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
 end
 
