@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :department do
-    name { Faker::Company.department }
+    name { Faker::Company.department + rand(1..1000).to_s }
   end
 end
