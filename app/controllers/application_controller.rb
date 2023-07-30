@@ -21,6 +21,10 @@ class ApplicationController < ActionController::API
     render_json_error(:unprocessable_entity, :form_error, 422, message: [message, e.message])
   end
 
+  rescue_from ArgumentError do |e|
+    message = I18n.t('error_messages.argument_error.message')
+    render_json_error(:unprocessable_entity, :argument_error, 422, message: [message, e.message])
+  end
   def render_json_error(status, error_class, code, extra = {})
     status = Rack::Utils::SYMBOL_TO_STATUS_CODE[status] if status.is_a? Symbol
 

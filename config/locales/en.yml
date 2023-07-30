@@ -33,6 +33,11 @@ en:
   invitation_mailer:
     send_invitation:
       subject: 'Invitation to BlindDate'
+  invitation:
+    expired: 'Invitation expired'
+    update: 'Your Response has been recorded'
+  parameters:
+    missing: 'is missing'
   error_messages:
     group_number_message: "Group members must be between 3 and 5"
     unprocessable_entity:
@@ -51,3 +56,8 @@ en:
       title: 'Data Validation Error'
       422: 'unprocessable_entity'
       message: 'Form validation failed'
+    argument_error:
+      title: 'Data Input Error'
+      422: 'unprocessable_entity'
+      message: 'Input data are Invalid'
+
