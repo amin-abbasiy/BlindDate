@@ -1,0 +1,11 @@
+<p>Hi there</p>
+
+<p>You have been invited to BlindDate!</p>
+
+<form action="<%= Rails.application.routes.default_url_options[:host] %>/invitations/accept" method="post">
+  <input type="submit" value="Accept">
+</form>
+
+<form action="<%= Rails.application.routes.default_url_options[:host] %>/invitations/reject" method="post">
+  <input type="submit" value="Reject">
+</form>

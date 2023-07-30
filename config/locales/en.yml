@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  invitation_mailer:
+    send_invitation:
+      subject: 'Invitation to BlindDate'
   error_messages:
     group_number_message: "Group members must be between 3 and 5"
     unprocessable_entity:
