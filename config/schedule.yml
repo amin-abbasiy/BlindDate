@@ -1,0 +1,9 @@
+create_group:
+  cron: "00 8 * * 2"
+  class: "GroupWorker"
+  queue: group
+
+pick_leader:
+  cron: "00 12 * * 4"
+  class: "LeaderWorker"
+  queue: leader

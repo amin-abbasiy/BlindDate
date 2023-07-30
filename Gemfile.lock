@@ -92,6 +92,7 @@ GEM
       activesupport
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -103,6 +104,8 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -110,6 +113,9 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -163,6 +169,7 @@ GEM
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -198,6 +205,8 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.8.1)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.8.1)
     reline (0.3.7)
       io-console (~> 0.5)
@@ -219,6 +228,9 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
+    rspec-sidekiq (3.1.0)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.12.1)
     rubocop (1.55.0)
       json (~> 2.3)
@@ -253,6 +265,15 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
+    sidekiq-cron (1.10.1)
+      fugit (~> 1.8)
+      globalid (>= 1.0.1)
+      sidekiq (>= 6)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -309,10 +330,12 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec-json_expectations (~> 2.2)
   rspec-rails (~> 6.0, >= 6.0.3)
+  rspec-sidekiq (~> 3.1)
   rubocop-rails
   rubocop-rspec
   selenium-webdriver
   shoulda-matchers (~> 5.3)
+  sidekiq-cron (~> 1.10, >= 1.10.1)
   sprockets-rails
   stimulus-rails
   turbo-rails

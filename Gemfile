@@ -51,6 +51,9 @@ gem 'rubocop-rspec', require: false
 # create json in convention-deriven manner
 gem 'active_model_serializers', '~> 0.10.13'
 
+# create cron jobs
+gem 'sidekiq-cron', '~> 1.10', '>= 1.10.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -66,6 +69,7 @@ group :development, :test do
   gem 'pry', '~> 0.14.2'
   gem 'rspec-json_expectations', '~> 2.2'
   gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
+  gem 'rspec-sidekiq', '~> 3.1'
 end
 
 group :development do
