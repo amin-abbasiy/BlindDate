@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe InvitationMailer, type: :mailer do
   describe 'when invite' do
     let(:employee) { FactoryBot.create(:employee) }
-    let(:invitation) { FactoryBot.create(:invitation, employee: employee) }
+    let(:invitation) { FactoryBot.create(:invitation, employee:) }
     let(:mail) { described_class.send_invitation(employee, invitation) }
 
     it 'renders the subject' do

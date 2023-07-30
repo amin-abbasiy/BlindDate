@@ -6,7 +6,7 @@ class InvitationMailer < ApplicationMailer
   def send_invitation(employee, invitation)
     @employee = employee
     @invitation = invitation
-    @url = %Q{#{Rails.application.routes.default_url_options[:host]}/api/v1/invitations/#{@invitation.id}}
+    @url = "#{Rails.application.routes.default_url_options[:host]}/api/v1/invitations/#{@invitation.id}"
     mail(to: @employee.email, subject: I18n.t('invitation_mailer.send_invitation.subject'))
   end
 end
