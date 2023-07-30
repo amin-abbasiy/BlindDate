@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "title": "Data Input Error",
+      "status": 422,
+      "code": "unprocessable_entity",
+      "message": [
+        "Input data are Invalid",
+        "'invalid' is not a valid status"
+      ]
+    }
+  ]
+}

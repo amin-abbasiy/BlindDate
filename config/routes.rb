@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :groups, only: %i[index create] do
         get 'week/:week', on: :collection, action: :week
       end
+      resources :invitations, only: %i[update]
     end
   end
 end
