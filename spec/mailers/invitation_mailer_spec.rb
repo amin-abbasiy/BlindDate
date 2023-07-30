@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.describe InvitationMailer, type: :mailer do
   describe 'when invite' do
     let(:employee) { FactoryBot.create(:employee) }
-    let(:mail) { described_class.send_invitation(employee) }
+    let(:invitation) { FactoryBot.create(:invitation, employee: employee) }
+    let(:mail) { described_class.send_invitation(employee, invitation) }
 
     it 'renders the subject' do
       expect(mail.subject).to eq('Invitation to BlindDate')

@@ -20,7 +20,7 @@ class GroupWorker
 
   def send_emails
     @group.invitations.each do |invitation|
-      InvitationMailer.send_invitation(invitation.employee).deliver_now
+      InvitationMailer.send_invitation(invitation.employee, invitation).deliver_now
     end
   end
 end

@@ -2,10 +2,12 @@
 
 <p>You have been invited to BlindDate!</p>
 
-<form action="<%= Rails.application.routes.default_url_options[:host] %>/invitations/accept" method="post">
-  <input type="submit" value="Accept">
-</form>
+<%= form_tag(@url, method: :put) do %>
+  <%= hidden_field_tag :status, 'accepted' %>
+  <%= submit_tag "Accept" %>
+<% end %>
 
-<form action="<%= Rails.application.routes.default_url_options[:host] %>/invitations/reject" method="post">
-  <input type="submit" value="Reject">
-</form>
+<%= form_tag(@url, method: :put) do %>
+  <%= hidden_field_tag :status, 'rejected' %>
+  <%= submit_tag "Reject" %>
+<% end %>
