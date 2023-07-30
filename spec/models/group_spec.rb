@@ -16,6 +16,19 @@ RSpec.describe Group, type: :model do
     it { is_expected.to validate_presence_of(:week) }
   end
 
+  context 'with scopes' do
+    let(:group) { FactoryBot.create(:group, week: 1) }
+    let(:group2) { FactoryBot.create(:group, week: 2) }
+
+    it 'weekly_groups should match' do
+      expect(described_class.weekly_groups(1)).to include(group)
+    end
+
+    it 'weekly_groups should not match' do
+      expect(described_class.weekly_groups(1)).not_to include(group2)
+    end
+  end
+
   context 'when create' do
     let(:group) { FactoryBot.create(:group, :with_members, week: 1) }
 

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root to: 'api/v1/groups#index'
   namespace :api do
     namespace :v1 do
-      resources :groups, only: %i[index create]
+      resources :groups, only: %i[index create] do
+        get 'week/:week', on: :collection, action: :week
+      end
     end
   end
 end

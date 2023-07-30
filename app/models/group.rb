@@ -14,4 +14,6 @@ class Group < ApplicationRecord
   has_many :invited_members, through: :pending_invitations, source: :employee
 
   validates :week, presence: true
+
+  scope :weekly_groups, ->(week) { where(week:) }
 end

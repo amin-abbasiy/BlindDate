@@ -12,9 +12,19 @@ class Api::V1::GroupsController < ApplicationController
     render json: @group, status: :created
   end
 
+  def week
+    @groups = ::Group.weekly_groups(fetch_week[:week])
+
+    render json: @groups
+  end
+
   private
 
   def group_params
     params.permit(:week, member_ids: [])
+  end
+
+  def fetch_week
+    params.permit(:week)
   end
 end
