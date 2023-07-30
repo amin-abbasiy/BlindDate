@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "title": "Data Validation Error",
+      "status": 422,
+      "code": "unprocessable_entity",
+      "message": [
+        "Form validation failed",
+        "Group members must be between 3 and 5"
+      ]
+    }
+  ]
+}

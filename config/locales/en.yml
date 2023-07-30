@@ -31,6 +31,7 @@
 
 en:
   error_messages:
+    group_number_message: "Group members must be between 3 and 5"
     unprocessable_entity:
       title: 'Payload Error'
       422: 'unprocessable_entity'
@@ -43,3 +44,7 @@ en:
       title: 'Data Validation Error'
       422: 'unprocessable_entity'
       message: 'Input Data are invalid'
+    form_error:
+      title: 'Data Validation Error'
+      422: 'unprocessable_entity'
+      message: 'Form validation failed'

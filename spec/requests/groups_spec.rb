@@ -165,17 +165,18 @@ RSpec.describe 'Groups', type: :request do
     end
 
     context 'with invalid data' do
+      let(:random_ids) { (1..4).map { rand(10**10) } }
       let(:invalid_group_params) do
         {
           week: nil,
-          member_ids: []
+          member_ids: random_ids
         }
       end
 
       let(:invalid_member_params) do
         {
           week: 12,
-          member_ids: []
+          member_ids: random_ids
         }
       end
 
@@ -209,6 +210,31 @@ RSpec.describe 'Groups', type: :request do
         post '/api/v1/groups', params: invalid_member_params
 
         expect(body).to include_json(not_found_error_response)
+      end
+    end
+
+    context 'with invalid members' do
+      let(:invalid_member_count) do
+        {
+          week: 12,
+          member_ids: []
+        }
+      end
+
+      let(:error_response) do
+        JSON.parse(File.read(Rails.root.join('spec/fixtures/create_group_member_error_response.json')))
+      end
+
+      it 'returns 422 error' do
+        post '/api/v1/groups', params: invalid_member_count
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns inefficient member error message' do
+        post '/api/v1/groups', params: invalid_member_count
+
+        expect(body).to include_json(error_response)
       end
     end
   end
