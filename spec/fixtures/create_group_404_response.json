@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "title": "Data Error",
+      "status": 404,
+      "code": "not_found",
+      "message": [
+        "Requested resources does not exist"
+      ]
+    }
+  ]
+}

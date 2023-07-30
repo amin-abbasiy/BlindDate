@@ -30,4 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  error_messages:
+    unprocessable_entity:
+      title: 'Payload Error'
+      422: 'unprocessable_entity'
+      message: "Request can't be processed"
+    record_not_found:
+      title: 'Data Error'
+      404: 'not_found'
+      message: 'Requested resources does not exist'
+    invalid_record:
+      title: 'Data Validation Error'
+      422: 'unprocessable_entity'
+      message: 'Input Data are invalid'

@@ -6,9 +6,12 @@ class Group < ApplicationRecord
 
   has_many :accepted_invitations, -> { where(status: 'accepted') }, class_name: 'Invitation',
                                                                     dependent: :destroy, inverse_of: :group
+  has_many :pending_invitations, -> { where(status: 'pending') }, class_name: 'Invitation',
+                                                                  dependent: :destroy, inverse_of: :group
   has_one :leader, -> { where(role: 'leader') }, class_name: 'Invitation',
                                                  dependent: :destroy, inverse_of: :group
   has_many :members, through: :accepted_invitations, source: :employee
+  has_many :invited_members, through: :pending_invitations, source: :employee
 
   validates :week, presence: true
 end

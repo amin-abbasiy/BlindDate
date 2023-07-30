@@ -81,4 +81,135 @@ RSpec.describe 'Groups', type: :request do
       end
     end
   end
+
+  describe 'POST /groups' do
+    context 'with valid data' do
+      let(:members) { FactoryBot.create_list(:employee, 4) }
+      let(:valid_params) do
+        {
+          week: Time.zone.today.cweek,
+          member_ids: [members.pluck(:id)]
+        }
+      end
+
+      let(:valid_response) do
+        {
+          data: {
+            id: Group.last.id.to_s,
+            type: 'group',
+            attributes: {
+              week: Time.zone.today.cweek
+            },
+            relationships: {
+              members: {
+                data: []
+              },
+              'invited-members': {
+                data: [
+                  {
+                    email: members.first.email,
+                    position: 0,
+                    department: members.first.department.name
+                  },
+                  {
+                    email: members.second.email,
+                    position: 0,
+                    department: members.second.department.name
+                  },
+                  {
+                    email: members.third.email,
+                    position: 0,
+                    department: members.third.department.name
+                  },
+                  {
+                    email: members.fourth.email,
+                    position: 0,
+                    department: members.fourth.department.name
+                  }
+                ]
+              },
+              restaurant: {
+                data: {}
+              },
+              leader: {
+                data: {}
+              }
+            }
+          }
+        }
+      end
+
+      it 'has 4 invitations' do
+        expect do
+          post '/api/v1/groups', params: valid_params
+        end.to change(Invitation, :count).by(4)
+      end
+
+      it 'has 1 group' do
+        expect do
+          post '/api/v1/groups', params: valid_params
+        end.to change(Group, :count).by(1)
+      end
+
+      it 'is created' do
+        post '/api/v1/groups', params: valid_params
+
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'has valid response' do
+        post '/api/v1/groups', params: valid_params
+
+        expect(body).to include_json(valid_response)
+      end
+    end
+
+    context 'with invalid data' do
+      let(:invalid_group_params) do
+        {
+          week: nil,
+          member_ids: []
+        }
+      end
+
+      let(:invalid_member_params) do
+        {
+          week: 12,
+          member_ids: []
+        }
+      end
+
+      let(:entity_error_response) do
+        JSON.parse(File.read(Rails.root.join('spec/fixtures/create_group_422_response.json')))
+      end
+
+      let(:not_found_error_response) do
+        JSON.parse(File.read(Rails.root.join('spec/fixtures/create_group_404_response.json')))
+      end
+
+      it '422 error' do
+        post '/api/v1/groups', params: invalid_group_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns 404 error' do
+        post '/api/v1/groups', params: invalid_member_params
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns 422 error message' do
+        post '/api/v1/groups', params: invalid_group_params
+
+        expect(body).to include_json(entity_error_response)
+      end
+
+      it 'returns 404 error message' do
+        post '/api/v1/groups', params: invalid_member_params
+
+        expect(body).to include_json(not_found_error_response)
+      end
+    end
+  end
 end

@@ -13,11 +13,21 @@ class GroupSerializer < ActiveModel::Serializer
     end
   end
 
+  has_many :invited_members, key: :invited_members do
+    object.invited_members.map do |member|
+      {
+        email: member.email,
+        position: member.position,
+        department: member.department.name
+      }
+    end
+  end
+
   belongs_to :restaurant do
     {
-      name: object.restaurant.name,
-      address: object.restaurant.address,
-      phone_number: object.restaurant.phone_number
+      name: object.restaurant&.name,
+      address: object.restaurant&.address,
+      phone_number: object.restaurant&.phone_number
     }
   end
 
