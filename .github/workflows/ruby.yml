@@ -33,7 +33,7 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
         run: |
-          gem install bundler -v 2.2.3
+          gem install bundler -v 2.4.10
           bundle install
           bin/rails db:create
           bin/rails db:schema:load
