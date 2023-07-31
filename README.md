@@ -13,6 +13,7 @@ Welcome to BlindDate App!
     - [Test API with Postman](#test-api-with-postman)
     - [API Test](#api-test)
     - [Test cases](#test-cases)
+    - [Test Coverage](#test-coverage)
     - [Design](#design)
       - [ERD](#erd)
       - [Architecture](#architecture)
@@ -56,8 +57,8 @@ If you want faster setup in development to test it out, Please follow Below setu
 
 #### Prerequisites
 
-- Ruby v3.1.3
-- Rails v6.1.7
+- Ruby v3.2.2
+- Rails v7.0.6
 - Redis > v6
 
 #### Installation
@@ -108,6 +109,10 @@ In CI tests are running, in case of local test you can run:
 ```bash
 rspec
 ```
+
+### Test Coverage
+
+After running test you can see coverage report in `coverage` directory
 
 ## Design
 
