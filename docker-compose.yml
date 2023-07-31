@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  postgres_db:
+    image: postgres:14
+    environment:
+      POSTGRES_USERNAME: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    networks:
+      - blind_date
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  redis:
+    image: redis:7.0.8
+
+  application:
+    tty: true
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      REDIS_URL: ${REDIS_URL}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    command:  >
+      bash -c "
+               rm -f tmp/pids/server.pid &&
+               rails db:create &&
+               rails db:migrate &&
+               rails db:seed &&
+               rails server -b 0.0.0.0"
+    networks:
+      - blind_date
+    depends_on:
+      - postgres_db
+      - redis
+
+  sidekiq:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    entrypoint: bundle exec sidekiq -C config/sidekiq.yml
+    environment:
+      REDIS_URL: ${REDIS_URL}
+      DB_HOST: ${POSTGRES_HOST}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASS: ${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres_db
+      - redis
+
+networks:
+  blind_date:
+    driver: bridge
