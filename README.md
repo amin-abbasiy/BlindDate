@@ -16,6 +16,7 @@ Welcome to BlindDate App!
     - [Design](#design)
       - [ERD](#erd)
       - [Architecture](#architecture)
+    - [Email Preview](#email-preview)
     - [List of Features](#list-of-features)
     - [Improvement](#improvement)
 
@@ -119,6 +120,10 @@ rspec
 - Services: system uses service layer to handle business logic
 - Serializers: system serializer to handle json response using entity relationships base on JSON API specification
 
+## Email Preview
+
+In order to seed how would be invitation email look like see: [Email Preview](http://localhost:3000/rails/mailers/invitation_mailer/send_invitation.html?locale=en)
+
 ## List of Features
 
 - [x] Create Group with 4 employee from different departments
@@ -140,5 +145,5 @@ rspec
 - Add Access Management to Authorize users with libraries Pundit
 - Can push Image to Registery using CI
 - Script to destroy app and data in filesystem and database can be added
-- And More cool stuff like Infra to automate resource creation
-
+- And Features like Infra to automate resource provisioning
+- Add Decorator for better presentation in complex views
