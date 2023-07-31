@@ -2,8 +2,11 @@
 
 Welcome to BlindDate App!
 
+This is a simple app to create groups of employees and invite them to lunch every week.
+
 # Table of Contents
 
+- [How it works](#how-it-works)
 - [Getting Started](#getting-started)
     - [Dockerized](#dockerized)
     - [Using Bash Script](#using-bash-script)
@@ -20,6 +23,15 @@ Welcome to BlindDate App!
     - [Email Preview](#email-preview)
     - [List of Features](#list-of-features)
     - [Improvement](#improvement)
+
+## How it works
+
+1. Every monday a cron job runs and Create random groups from employees from different departments
+2. Send email to all employees in group and invite employees to lunch
+3. Then every Thursday another cron job runs and pick a random leader
+4. Leader can choose a restaurant from list of restaurants (API for this not Implemented yet)
+
+To see full list of features please see [List of Features](#list-of-features)
 
 ## Getting Started
 
