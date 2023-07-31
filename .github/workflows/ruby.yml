@@ -2,6 +2,9 @@ name: BlindDate API
 
 on: [push,pull_request]
 
+env:
+  DEFAULT_FROM_EMAIL: from@mail.com
+
 jobs:
   build:
     runs-on: ubuntu-latest
